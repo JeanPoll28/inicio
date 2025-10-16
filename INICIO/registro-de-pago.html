@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - D.V.T</title>
+  <link rel="stylesheet" href="style3.css" />
+</head>
+<body>
+
+  <div class="form-container">
+    <h1>D.V.T</h1>
+    <p><strong>Información > Envío > Pago</strong></p>
+
+    <form id="checkoutForm">
+      <h3>Contact information</h3>
+      <input type="email" id="email" placeholder="Dirección de correo electrónico *" required />
+
+      <h3>Billing & Shipping</h3>
+      <div class="two-columns">
+        <div><input type="text" id="nombre" placeholder="Nombre *" required /></div>
+        <div><input type="text" id="apellidos" placeholder="Apellidos *" required /></div>
+      </div>
+      <input type="text" id="dni" placeholder="DNI *" required />
+      <input type="tel" id="telefono" placeholder="Teléfono *" required />
+
+      <p><strong>País / Región *</strong><br />Perú</p>
+
+      <label>Departamento *</label>
+      <select id="departamento" required>
+        <option value="">Seleccionar Departamento</option>
+        <option>AMAZONAS</option>
+        <option>ANCASH</option>
+        <option>APURIMAC</option>
+        <option>AREQUIPA</option>
+        <option>AYACUCHO</option>
+        <option>CAJAMARCA</option>
+      </select>
+
+      <input type="text" id="referencia" placeholder="Referencia (opcional)" />
+      <button type="submit">Finalizar compra</button>
+    </form>
+  </div>
+
+  <div class="summary">
+    <h3>Resumen de tu pedido</h3>
+    <div id="cartProducts"></div>
+
+    <div class="apply-coupon">
+      <input type="text" id="couponInput" placeholder="Código de descuento" />
+      <button id="applyCoupon">APLICAR</button>
+    </div>
+
+    <div class="total">
+      <p>Subtotal: <span id="subtotal">S/0.00</span></p>
+      <p>Envío: S/0.00</p>
+      <p><strong>Total: <span id="total">S/0.00</span></strong></p>
+    </div>
+  </div>
+
+  <script>
+    // --- Obtener carrito desde localStorage ---
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const cartProductsDiv = document.getElementById('cartProducts');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    const applyCouponBtn = document.getElementById('applyCoupon');
+    const couponInput = document.getElementById('couponInput');
+    let descuentoAplicado = false;
+
+    function mostrarCarrito() {
+      cartProductsDiv.innerHTML = '';
+      let subtotal = 0;
+
+      carrito.forEach(item => {
+        const cantidad = item.cantidad || 1;
+        subtotal += item.precio * cantidad;
+
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+        productDiv.innerHTML = `
+          <img src="${item.imagen}" alt="${item.nombre}" />
+          <div>
+            <p><strong>${item.nombre}</strong><br />Cantidad: ${cantidad}</p>
+            <p><strong>S/${(item.precio * cantidad).toFixed(2)}</strong></p>
+          </div>
+        `;
+        cartProductsDiv.appendChild(productDiv);
+      });
+
+      subtotalEl.textContent = `S/${subtotal.toFixed(2)}`;
+      totalEl.textContent = `S/${subtotal.toFixed(2)}`;
+    }
+
+    mostrarCarrito();
+
+    // --- Aplicar cupones ---
+    applyCouponBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (descuentoAplicado) {
+        alert("⚠️ Ya aplicaste un cupón de descuento.");
+        return;
+      }
+      const code = couponInput.value.trim().toUpperCase();
+      let subtotal = carrito.reduce((acc, i) => acc + (i.precio * (i.cantidad || 1)), 0);
+      let descuento = 0;
+
+      if (code === "DESCUENTO10") descuento = subtotal * 0.10;
+      else if (code === "DESCUENTO20") descuento = subtotal * 0.20;
+      else {
+        alert("❌ Cupón inválido. Intenta con DESCUENTO10 o DESCUENTO20.");
+        return;
+      }
+
+      descuentoAplicado = true;
+      alert(`✅ Cupón válido, ${(descuento === subtotal*0.10 ? 10 : 20)}% de descuento aplicado.`);
+      totalEl.textContent = `S/${(subtotal - descuento).toFixed(2)}`;
+    });
+
+    // --- Finalizar compra ---
+    const checkoutForm = document.getElementById('checkoutForm');
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('¡Compra finalizada! Gracias por tu compra.');
+      localStorage.removeItem('carrito');
+      window.location.href = 'index.html';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>D.V.T — Tienda</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="topbar">
+      <div class="socials">
+        <span class="social">IG 29.1K</span>
+        <span class="social">TT 4.3K</span>
+      </div>
+      <div class="top-icons">
+        <input class="search-input" id="searchHeader" placeholder="Buscar..." />
+        <button id="searchBtn" class="icon-btn" aria-label="buscar">🔍</button>
+        <button id="profileBtn" class="icon-btn" aria-label="perfil">👤</button>
+        <button id="cartBtn" class="icon-btn" aria-label="carrito">🛒 <span id="cartCount" class="cart-count">0</span></button>
+      </div>
+    </div>
+
+    <div class="brand-row">
+      <div class="logo">D.V.T</div>
+      <nav class="main-nav" id="mainNav">
+        <a href="#">SALE</a>
+        <a href="#">NUEVO</a>
+        <a href="#">OFF-WHITE</a>
+        <a href="#">JORDAN</a>
+        <a href="#">NIKE</a>
+        <a href="#">NEW BALANCE</a>
+        <a href="#">ADIDAS</a>
+      </nav>
+      <button id="mobileMenuToggle" class="mobile-menu-btn" aria-label="menu">☰</button>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <main>
+    <!-- Productos -->
+    <section class="products">
+      <h2>Más vendidos</h2>
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="thumb">
+            <img src="img/paso fino.avif" alt="Adidas x Bad Bunny" />
+          </div>
+          <h3>Adidas x Bad Bunny Gazelle Indoor "San Juan"</h3>
+          <p class="price">S/ 1,300.00</p>
+          <button class="addCart">Agregar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="thumb">
+            <img src="img/nike dunk low born x raised.jpeg" alt="Nike SB Dunk Low" />
+          </div>
+          <h3>Nike SB Dunk Low</h3>
+          <p class="price">S/ 1,800.00</p>
+          <button class="addCart">Agregar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="thumb">
+            <img src="img/Puma-LaMelo-Ball-LaFrance-.avif" alt="Puma LaMelo Ball" />
+          </div>
+          <h3>Puma LaMelo Ball LaFrancé Amour</h3>
+          <p class="price">S/ 1,500.00</p>
+          <button class="addCart">Agregar</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Usuario</h4>
+        <ul>
+          <li><a href="#">Mi cuenta</a></li>
+          <li><a href="#">Registrarme</a></li>
+          <li><a href="#">Rastrear mi pedido</a></li>
+          <li><a href="#">Mi bolsa de compras</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tienda</h4>
+        <ul>
+          <li><a href="#">Ver todo</a></li>
+          <li><a href="#">Más vendidos</a></li>
+          <li><a href="#">Lo nuevo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ayuda</h4>
+        <ul>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Libro de reclamaciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter">
+        <h4>D.V.T</h4>
+        <p>Recibe promociones exclusivas y novedades.</p>
+        <form id="newsletterForm">
+          <input type="email" id="emailInput" placeholder="Ingresa tu Email" required />
+          <label class="checkbox">
+            <input type="checkbox" id="privacyCheck" />Acepto la política de privacidad
+          </label>
+          <button type="submit" class="subscribe-btn">SUSCRIBIRME</button>
+        </form>
+        <p id="subscribeMsg" class="subscribe-msg" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>D.V.T © 2024. Todos los Derechos Reservados.</p>
+      <p>Web diseñada por JEAN POLL VILCA</p>
+    </div>
+  </footer>
+
+  <!-- CARRITO -->
+  <div id="cartPanel" class="cart-panel hidden">
+    <button id="closeCartPanel" class="close-btn">×</button>
+    <h3>Tu carrito</h3>
+    <div id="cartItemsContainer"></div>
+    <p id="subtotal">Subtotal: S/0.00</p>
+    <a href="registro-de-pago.html" id="buyNowBtn" class="buy-btn">Finalizar compra</a>   
+  </div>
+  
+
+
+<script src="script.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,65 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.form-container {
+  width: 60%;
+}
+
+.summary {
+  width: 35%;
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.two-columns {
+  display: flex;
+  gap: 10px;
+}
+
+.two-columns > div {
+  flex: 1;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product img {
+  width: 60px;
+  height: auto;
+}
+
+.apply-coupon {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.apply-coupon input {
+  flex: 1;
+}
+
+.apply-coupon button {
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.total {
+  margin-top: 20px;
+}
